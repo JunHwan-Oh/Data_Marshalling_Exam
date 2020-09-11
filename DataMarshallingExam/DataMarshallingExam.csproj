@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DataMarshallingExam</RootNamespace>
     <AssemblyName>DataMarshallingExam</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -29,7 +30,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\ExecFiles\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,7 +60,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainView.xaml">
+    <Page Include="Components\MarshallingPointer\MarshallPtrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -67,20 +72,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseClasses\DeleterHandle.cs" />
     <Compile Include="BaseClasses\ModelBase.cs" />
+    <Compile Include="BaseClasses\Object.cs" />
     <Compile Include="Components\MarshallingPanel\MarshallModel.cs" />
     <Compile Include="Components\MarshallingPanel\MarshallView.xaml.cs">
       <DependentUpon>MarshallView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MarshallingPanel\MarshallViewModel.cs" />
-    <Compile Include="MainModel.cs" />
-    <Compile Include="MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="Components\MarshallingPointer\MarshallPtrModel.cs" />
+    <Compile Include="Components\MarshallingPointer\MarshallPtrView.xaml.cs">
+      <DependentUpon>MarshallPtrView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MarshallingPointer\MarshallPtrViewModel.cs" />
+    <Compile Include="Components\NativeMethods.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

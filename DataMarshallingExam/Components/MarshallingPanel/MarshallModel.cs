@@ -31,6 +31,6 @@ namespace DataMarshallingExam.Components.MarshallingPanel
             public bool isRun;
         }
 
-        unsafe public delegate void ReceiveDelegate(MessageItemData s, bool b);
+        public delegate void ReceiveDelegate(MessageItemData s, bool b);
     }
 }

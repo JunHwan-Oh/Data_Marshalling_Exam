@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\june\source\repos\DataMarshallingExam\DataMarshallingExam\obj\Debug\
+D:\Win10\Desktop\Data_Marshalling_Exam-master\DataMarshallingExam\obj\Debug\
 DataMarshallingExam
 none
 false
 DEBUG;TRACE
-C:\Users\june\source\repos\DataMarshallingExam\DataMarshallingExam\App.xaml
-2-1455803201
+D:\Win10\Desktop\Data_Marshalling_Exam-master\DataMarshallingExam\App.xaml
+3-43526026
 
-15-1876877099
-13-1142990016
-Components\MarshallingPanel\MarshallView.xaml;MainView.xaml;
+16-1458190586
+13-1662647192
+Components\MarshallingPanel\MarshallView.xaml;Components\MarshallingPointer\MarshallPtrView.xaml;MainWindow.xaml;
 
-True
+False
 

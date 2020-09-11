@@ -6,6 +6,7 @@ namespace DataMarshallingExam.Components.MarshallingPanel
 {
     public class MarshallViewModel
     {
+
         static ReceiveDelegate receive_delegate;
 
         MarshallView _view = null;
@@ -19,19 +20,6 @@ namespace DataMarshallingExam.Components.MarshallingPanel
             this._model = new MarshallModel(_view);
         }
 
-        // 보내기 위한 함수    cpp 속성 -> C/C++ -> 고급 -> 호출 규칙 (StdCall) 로 설정해야 함.
-        [DllImport("LIB\\DataMarshallingComm.dll")]
-        public static extern Boolean Send(IntPtr pItemsData);
-
-
-        // 받기 위한 함수      cpp 속성 -> C/C++ -> 고급 -> 호출 규칙 (StdCall) 로 설정해야 함.
-        [DllImport("LIB\\DataMarshallingComm.dll")]
-        public static extern bool Init(ReceiveDelegate del);
-
-        
-
-
-
 
         // 텍스트 전송 함수
         static bool _Send(MessageItemData messageitem)
@@ -43,10 +31,12 @@ namespace DataMarshallingExam.Components.MarshallingPanel
             Marshal.StructureToPtr(messageitem, pmipout_itemdata, true);
 
 
-            bRet = Send(pmipout_itemdata);
+            bRet = NativeMethods.Send(pmipout_itemdata);
 
             Console.WriteLine("\n---------- C# 에서 받은 구조체 ----------");
 
+            // 방법 1 : 변경된 구조체를 받는 방법
+            MessageItemData receivedata = (MessageItemData)Marshal.PtrToStructure(pmipout_itemdata, typeof(MessageItemData));
 
             Marshal.FreeHGlobal(pmipout_itemdata);
             
@@ -57,7 +47,8 @@ namespace DataMarshallingExam.Components.MarshallingPanel
         {
             bool bRet = false;
 
-            bRet = Init(del);
+            // 방법 2 : 델리게이트를 전달하고 C++ Dll 에서 해당 델리게이트를 실행하여 업데이트
+            bRet = NativeMethods.Init(del);
 
             return bRet;
         }
@@ -104,7 +95,7 @@ namespace DataMarshallingExam.Components.MarshallingPanel
                     Console.WriteLine("\n\n\n--------- C# 마샬링 실패함. -----------\n\n\n");
                 }
 
-                receive_delegate += _Receive;
+                receive_delegate = _Receive;
 
                 _Init(receive_delegate);
 
